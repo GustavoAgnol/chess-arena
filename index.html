@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="./style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+
+<div class="app">
+  <header>
+    <div>
+      <h1>♟ Chess Arena</h1>
+      <p>Seu próprio jogo de xadrez</p>
+    </div>
+
+    <button id="restart">Nova partida</button>
+    <button id="restart">Nova partida</button>
+
+<select id="bot-level">
+  <option value="novato">Bot Novato</option>
+  <option value="facil">Bot Fácil</option>
+  <option value="medio">Bot Intermediário</option>
+  <option value="dificil">Bot Avançado</option>
+  <option value="especialista">Bot Especialista</option>
+</select>
+    
+  </header>
+
+  <main>
+    <section class="game">
+      <div class="player">
+        <span class="avatar">♚</span>
+        <div>
+          <strong>Jogador preto</strong>
+          <small id="black-status">Aguardando...</small>
+        </div>
+      </div>
+
+      <div id="board"></div>
+
+      <div class="player">
+        <span class="avatar">♔</span>
+        <div>
+          <strong>Jogador branco</strong>
+          <small id="white-status">Sua vez!</small>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <h2 id="game-status">Brancas jogam</h2>
+
+      <p id="message">
+        Selecione uma peça para começar.
+      </p>
+
+      <div class="buttons">
+        <button id="undo">Desfazer</button>
+        <button id="flip">Virar tabuleiro</button>
+      </div>
+
+      <h3>Histórico de jogadas</h3>
+
+      <div id="history"></div>
+    </aside>
+  </main>
+
+  <footer>
+    Desenvolvido por você · Chess Arena
+  </footer>
+</div>
+
+<script src="./script.js"></script>

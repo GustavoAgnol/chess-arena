@@ -1,0 +1,307 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #10141f;
+  color: #f1f5f9;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 15px;
+}
+
+h1 {
+  margin: 0;
+  color: #a5d6a7;
+}
+
+header p {
+  color: #94a3b8;
+  margin-bottom: 0;
+}
+
+button {
+  background: #6f9257;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #86aa6c;
+  transform: translateY(-2px);
+}
+
+main {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.game {
+  width: min(100%, 560px);
+  flex-shrink: 0;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: 100%;
+  aspect-ratio: 1;
+  border: 5px solid #293241;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.square {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.light {
+  background: #eeeed2;
+}
+
+.dark {
+  background: #769656;
+}
+
+.square.selected {
+  background: #f6f669;
+}
+
+.square.last-move {
+  background: #cdd26a;
+}
+
+.piece {
+  font-size: clamp(25px, 6vw, 60px);
+  line-height: 1;
+  cursor: grab;
+  z-index: 2;
+  user-select: none;
+}
+
+.piece:active {
+  cursor: grabbing;
+}
+
+.white-piece {
+  color: #ffffff;
+  text-shadow:
+    1px 1px 2px #222,
+    -1px -1px 2px #222,
+    1px -1px 2px #222,
+    -1px 1px 2px #222;
+}
+
+.black-piece {
+  color: #333333;
+  text-shadow:
+    1px 1px 2px #000,
+    -1px -1px 2px #000;
+}
+
+.coordinates {
+  position: absolute;
+  bottom: 3px;
+  right: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  opacity: 0.65;
+}
+
+.light .coordinates {
+  color: #769656;
+}
+
+.dark .coordinates {
+  color: #eeeed2;
+}
+
+.move-dot {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  background: #283b27;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.capture-dot {
+  position: absolute;
+  inset: 0;
+  border: 5px solid #283b27;
+  border-radius: 50%;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 5px;
+}
+
+.avatar {
+  font-size: 35px;
+}
+
+.player strong,
+.player small {
+  display: block;
+}
+
+.player small {
+  color: #94a3b8;
+  margin-top: 5px;
+}
+
+.panel {
+  flex: 1;
+  min-width: 220px;
+  background: #1b2332;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.panel h2 {
+  color: #a5d6a7;
+  margin-top: 0;
+}
+
+.panel p {
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+#history {
+  display: grid;
+  grid-template-columns: 35px 1fr 1fr;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #111827;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.move-number {
+  color: #64748b;
+}
+
+.move {
+  color: #e2e8f0;
+}
+
+.move:hover {
+  color: #a5d6a7;
+}
+
+footer {
+  text-align: center;
+  color: #64748b;
+  margin-top: 30px;
+}
+
+@media (max-width: 800px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game {
+    width: 100%;
+  }
+
+  .panel {
+    width: 100%;
+  }
+
+  .app {
+    padding: 12px;
+  }
+
+  header {
+    flex-wrap: wrap;
+  }
+}
+
+/* Camada das peças animadas */
+#board {
+  position: relative;
+}
+
+/* Camada que fica por cima das casas */
+.piece-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Peças */
+.piece-layer .piece {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 12.5%;
+  height: 12.5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: clamp(25px, 6vw, 60px);
+  line-height: 1;
+
+  pointer-events: auto;
+  cursor: grab;
+
+  transition: transform 220ms ease-in-out;
+}
+
+.piece-layer .piece:active {
+  cursor: grabbing;
+}
+
+/* Efeito ao selecionar */
+.piece-layer .piece {
+  filter: drop-shadow(0 0 0 transparent);
+}
+
+.piece-layer .piece:hover {
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.35));
+}
