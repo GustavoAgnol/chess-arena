@@ -161,8 +161,10 @@ function pontuacaoBrancas(resultado, fen) {
 
 async function avaliarJogada(fenAntes, fenDepois, corJogador, numeroJogada) {
   // Primeiro, verificar se o lance é de abertura
+console.log("AVALIAÇÃO INICIADA:", numeroJogada, fenDepois);
   if (ehLanceDeLivro(numeroJogada)) {
     classificacoesJogadas.set(numeroJogada, "Livro");
+console.log("LANCE DE LIVRO:", numeroJogada);
     atualizarHistorico();
     return;
   }
